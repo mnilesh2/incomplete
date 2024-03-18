@@ -13,7 +13,8 @@ function ContactUs(){
              phone="Instructor"
              image="images/indrnil.jpg"
              email="isaha@cse.iitk.ac.in"
-
+             linkedInLink="https://linkedin.com/in/indranil-saha-8859135"
+             instagramLink="khwdbc"
           />
           <Card
              key="Abhilash"
@@ -21,6 +22,8 @@ function ContactUs(){
              name="Yemike Abhilash Chandra"
              phone="Technical Assistant"
              email="yemikeac22@iitk.ac.in"
+             linkedInLink="jwgdvcb"
+             instagramLink="jeghcb"
           />
         </div>
         <div className='cont'>
@@ -32,6 +35,8 @@ function ContactUs(){
               phone ={item.phone}
               email ={item.email}
               image ={item.image}
+              linkedInLink={item.linkedInLink}
+              instagramLink={item.instagramLink}
               />
               );
            })}
