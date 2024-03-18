@@ -38,6 +38,7 @@ function App() {
     // const [loginDetail, setLoginDetail] = useState("");
 
 
+    
   const getData = (isAuth, who, ikartik) => {
     // Handle data from child component
     console.log("Data received in parent:", ikartik);
@@ -71,7 +72,7 @@ function App() {
                 <Route path="Home" element={<HomeFaculty />} />
                 <Route path="EnrolledStudents" element={<EnrolledStudents />} />
                 <Route path="ContactUs" element={<ContactUs />} />
-                <Route path="LogOut" element={<LogOut />} />
+                {/* <Route path="LogOut" element={<LogOut />} /> */}
                 <Route path="UserProfile" element={<UserProfile logedInStudentData= {logedInStudentData} />} />
                 <Route path="LogOut" element={<LogOut onLogout={handleLogout} />} />
                 {/* <Route path="UserProfile" element={<UserProfile loginDetail= {loginDetail} />} /> */}

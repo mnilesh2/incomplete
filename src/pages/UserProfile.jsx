@@ -90,7 +90,8 @@ function ProfileCard1(project) {
 
 function UserProfile(props){
   const  myData = props.logedInStudentData
-      console.log("data in userProfile: "+myData);
+  const studentProjectsIdArray = props.logedInStudentData.projectsRequested;
+    //   console.log("data in userProfile: "+myData);
 //   const [oneUserData, setOneUserData] = useState(null);
 
 //   useEffect(() => {

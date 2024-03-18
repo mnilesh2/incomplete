@@ -81,7 +81,7 @@ function ForgotPassword(){
         setConfirmpassword(data.confirmpassword);
         setOTP(data.OTP);
     
-    if (!OTPData || !OTPData.otp) {
+    if (!OTPData ) {
         alert("OTP not received. Please send OTP first.");
         return;
     }

@@ -61,12 +61,13 @@ function Project_list_prof() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://mohdnasar.vercel.app/api/user/faculty/abhas'); //"abhas" should be replaced by "unique id" of professor signed in
+        const response = await fetch('https://cs253backederror404teamnotfoundmohammaadnasarsiddiqui.vercel.app/api/user/faculty/abhas'); //"abhas" should be replaced by "unique id" of professor signed in
         if (!response.ok) {
           throw new Error('Failed to fetch faculty data');
         }
         const data = await response.json();
         setFacultyData(data);
+        console.log("data in prof project list");
         console.log(data);
         setLoading(false);
       } catch (error) {
