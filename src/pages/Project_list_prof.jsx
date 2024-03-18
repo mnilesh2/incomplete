@@ -5,10 +5,19 @@ import {Link } from "react-router-dom";
 import Loader from '../components/Faculty/Loader'
 
 function TotalProjects(props) {
+ 
+  function handleReq(){
+    // setStudentReq(props.studentsRequested);
+    // console.log("inside handleReq");
+    // console.log(props.studentsRequested);
+    props.req(props.studentsRequested);
+  }
   console.log("inside total projects "+ props.projectId);
+  // console.log("students requestedd");
+  // console.log(props.studentsRequested);
   const [showDetails, setShowDetails] = useState(false);
   
-  
+
 // Expand function
   const expand = () => {
     const projectDiv = document.getElementById(`project-${props.index}`);
@@ -49,8 +58,8 @@ function TotalProjects(props) {
       <h2>{props.name}</h2>
       <p>{props.details}</p>
       <div className="normal-details">
-      <Link className="a" to="/EnrolledStudents"><button>Enrolled Students</button></Link>
-      <Link className="a" to="/Requests"><button>Requests</button></Link>
+      <Link className="a" to="/EnrolledStudents"><button >Enrolled Students</button></Link>
+      <Link className="a" to="/Requests"><button onClick={handleReq}>Requests</button></Link>
         
         
         <button id={`expand-button-${props.index}`} onClick={expand}>{showDetails ? "Show Less" : "Show More"}</button>
@@ -78,7 +87,7 @@ function TotalProjects(props) {
 }
 
 
-function Project_list_prof() {
+function Project_list_prof(props) {
   const [facultyData, setFacultyData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -133,6 +142,8 @@ function Project_list_prof() {
             resume={item.resumerequired ? 'Yes' : 'No'}
             students={item.maxstudents}
             projectId ={item._id}
+            studentsRequested = {item.studentsRequested}
+            req = {props.req}
           />
         ))
       )}

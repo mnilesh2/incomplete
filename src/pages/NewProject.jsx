@@ -116,9 +116,12 @@ function NewProject() {
           />
 
           <div className="project-buttons">
-          <button className="button" id="cancel-button">
+          <Link id='cancel-kar'  to="/Project_list_prof">
+            <button className="button" id="cancel-button">
             Cancel
           </button>
+          </Link>
+          
            <input type="submit" className="submit-button" value="Save" />
            </div>
           

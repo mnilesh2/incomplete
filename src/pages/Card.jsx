@@ -1,6 +1,8 @@
 import React from "react";
 import './Card.css';
-import { LinkedIn, Instagram } from '@material-ui/icons';
+// import { LinkedIn, Instagram } from '@material-ui/icons';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 function Card(props){
   return (
@@ -17,11 +19,11 @@ function Card(props){
         <div className="links">
           {/* LinkedIn link */}
           <a href={props.linkedInLink} target="_blank" rel="noopener noreferrer">
-            <LinkedIn className="linkedin-icon" />
+            <LinkedInIcon className="linkedin-icon" />
           </a>
           {/* Instagram link */}
           <a href={props.instagramLink} target="_blank" rel="noopener noreferrer">
-            <Instagram className="instagram-icon" />
+            <InstagramIcon className="instagram-icon" />
           </a>
         </div>
       </div> 

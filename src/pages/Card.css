@@ -81,6 +81,7 @@
     justify-content: center;
     background-color: rgb(12, 12, 129);
     font-size: 40px;
+    gap: 30px;
     color:white;
     margin-top: -15px;
 }
@@ -92,6 +93,7 @@
     font-size: 40px;
     color:white;
     margin-top: -15px;
+    gap: 30px;
 }
 .links .MuiSvgIcon-root {
     color: white;
@@ -100,4 +102,9 @@
   .links.linkedin-icon{
     margin-right: -10px;
 }
-  
+.linkedin-icon:hover{
+   color: rgb(0, 251, 255);
+}
+.instagram-icon:hover{
+    color: rgb(255, 0, 81);
+}

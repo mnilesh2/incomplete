@@ -36,12 +36,23 @@ function App() {
   const [CategoryName, setCategoryName] = useState("");
   const[logedInStudentData, setLogedInStudentData] = useState(null);
     // const [loginDetail, setLoginDetail] = useState("");
+    const [studentReq, setStudentReq] = useState("");
+    const my =[];
 
-
-    
+    function handleReq(array){
+      console.log("data recieved in app.jsx");
+           console.log(array);
+           const i = array.length;
+           console.log(i);
+           for(var x =0; x<i; x++){
+            my.push(array[x]);
+           } 
+           console.log("after loop");
+           console.log(my);
+    };
   const getData = (isAuth, who, ikartik) => {
     // Handle data from child component
-    console.log("Data received in parent:", ikartik);
+    // console.log("Data received in parent:", ikartik);
     setAuthorization(isAuth);
     setKon(who);
     setLogedInStudentData(ikartik);
@@ -63,10 +74,10 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<NavBar who={kon} />}>
-                <Route path="Project_list_prof" element={<Project_list_prof />} />
+                <Route path="Project_list_prof" element={<Project_list_prof req ={handleReq} />} />
                 {/* <Route path="DataTable" element={<DataTable />} /> */}
                 <Route path="NewProject" element={<NewProject />} />
-                <Route path="Requests" element={<Requests />} />
+                <Route path="Requests" element={<Requests my={my}/>} />
                 <Route path="ProfProfile" element={<ProfProfile />} />
                 <Route index element={<HomeFaculty />} />
                 <Route path="Home" element={<HomeFaculty />} />

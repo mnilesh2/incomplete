@@ -22,7 +22,7 @@ function ContactUs(){
              name="Yemike Abhilash Chandra"
              phone="Technical Assistant"
              email="yemikeac22@iitk.ac.in"
-             linkedInLink="jwgdvcb"
+             linkedInLink="https://www.linkedin.com/in/abhilash-chandra?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
              instagramLink="jeghcb"
           />
         </div>

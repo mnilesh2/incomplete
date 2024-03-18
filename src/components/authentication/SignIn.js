@@ -53,7 +53,7 @@ function SignIn(props) {
 
       const resp = await response.json();
       setIkartik(resp.data.user);
-      console.log(ikartik);
+      // console.log(ikartik);
       setRoll(resp.data.user.rollno);
 
       if (resp.status === "success") {
@@ -81,8 +81,8 @@ function SignIn(props) {
   }, [isAuth]);
 
   props.sendDataToParent(isAuth, iskon, ikartik);
-  console.log(ikartik);
-  console.log(`this is login data that im sending from signinjs ${ikartik}`);
+  // console.log(ikartik);
+  // console.log(`this is login data that im sending from signinjs ${ikartik}`);
 
   return (
     // <div className="my-login-page">
