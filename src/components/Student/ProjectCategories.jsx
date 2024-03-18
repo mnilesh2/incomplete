@@ -6,7 +6,7 @@ import "./ProjectDesc.jsx";
 import { Link } from "react-router-dom";
 
 function TotalProjects(props) {
-  console.log(props.rollno);
+  // console.log(props.rollno);
   const user = {
   };
 
@@ -27,25 +27,33 @@ function TotalProjects(props) {
 
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
-    try {
+    const btnData = document.getElementById("request-vala-button").innerText;
+    if(btnData === "Request"){
+       
+      try {
 
-
-
-      const url = ` https://cs253backederror404teamnotfoundmohammaadnasarsiddiqui.vercel.app/api/user/${props.logedInStudentData.rollno}/requestproject/${props.index}`;
-      //update the roll no and project id in given route
-
-      const response = await axios.post(url, user);
-      // console.log(response.status);
-
-      if (response.status === 201) {
-        console.log(response);
-      } else {
-        console.error('Failed to create project');
+        const url = ` https://cs253backederror404teamnotfoundmohammaadnasarsiddiqui.vercel.app/api/user/${props.logedInStudentData.rollno}/requestproject/${props.index}`;
+        //update the roll no and project id in given route
+  
+        const response = await axios.post(url, user);
+        // console.log(response.status);
+  
+        if (response.status === 201) {
+          console.log(response);
+          document.getElementById("request-vala-button").innerText =  "Requested!!";
+        } else {
+          console.error('Failed to create project');
+        }
+      } catch (error) {
+        console.error('Error creating project:', error.message);
       }
-    } catch (error) {
-      console.error('Error creating project:', error.message);
+
+    }else{
+      alert("Already Requested.");
     }
+   
   };
 
 
@@ -113,7 +121,7 @@ function TotalProjects(props) {
 
       </div>
 
-      <div className="request-button-css"><button onClick={handleSubmit}>Request</button></div>
+      <div  className="request-button-css"><button id="request-vala-button" onClick={handleSubmit}>Request</button></div>
 
     </div>
   );
@@ -129,7 +137,7 @@ function ProjectCategory(props) {
         const response = await axios.get(
           `https://cs253backederror404teamnotfoundmohammaadnasarsiddiqui.vercel.app/api/user/faculty/projects/?projectCategory=${props.CategoryName}`
         );
-        // console.log(response.data);
+        console.log(response.data);
         setFacultyData(response.data); // Assuming the response contains an array of faculty data
       } catch (error) {
         console.error("Error fetching faculty data:", error);
@@ -138,7 +146,7 @@ function ProjectCategory(props) {
 
     fetchData();
   }, []);
-  console.log("faculty data is",facultyData);
+  // console.log("faculty data is",facultyData);
 
 
 

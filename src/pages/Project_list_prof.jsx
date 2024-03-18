@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import './project_list_prof.css'
 import {Link } from "react-router-dom";
 import Loader from '../components/Faculty/Loader'
 
 function TotalProjects(props) {
+  console.log("inside total projects "+ props.projectId);
   const [showDetails, setShowDetails] = useState(false);
-
+  
+  
+// Expand function
   const expand = () => {
     const projectDiv = document.getElementById(`project-${props.index}`);
     const button = document.getElementById(`expand-button-${props.index}`);
@@ -19,6 +23,26 @@ function TotalProjects(props) {
     }
     setShowDetails(!showDetails);
   };
+
+
+  // delete function
+  const DeleteKaro = async () => {
+    const badBtn =  document.getElementById("delete-vala-btn").innerText;
+    if(badBtn === "Delete"){
+      const id = props.projectId;
+      //65f3aa5e975d1df0ecd948a1
+      console.log(id);
+      console.log("inside delete function");
+      const url = `https://cs253backederror404teamnotfoundmohammaadnasarsiddiqui.vercel.app/api/professor/deleteproject/${id}`;
+      const response = await axios.delete(url);
+      alert(response.data.message);
+      document.getElementById("delete-vala-btn").innerText ="Deleted!";
+      console.log(response);
+    }else{
+      alert("project deleted!!");
+    }
+  
+  }
 
   return (
     <div className={`each-project ${showDetails ? 'expanded' : ''}`} id={`project-${props.index}`}>
@@ -44,8 +68,8 @@ function TotalProjects(props) {
             <h4 style={{ color: 'blue' }}>Pre-Requisite: <span style={{ color: 'black', fontWeight: "500", fontSize: "15px" }}>{props.preReq}</span></h4>
           </div>
           <div className="editing">
-            <button>Edit</button>
-            <button>Delete</button>
+            {/* <button>Edit</button> */}
+            <button id='delete-vala-btn' onClick={DeleteKaro} >Delete</button>
           </div>
         </div>
       )}
@@ -97,6 +121,7 @@ function Project_list_prof() {
         <Loader  />
       ) : (
         facultyData && facultyData.projects.map((item, index) => (
+          
           <TotalProjects
             key={index}
             index={index}
@@ -107,6 +132,7 @@ function Project_list_prof() {
             preReq={item.prereg} // Joining prerequisites array into a comma-separated string
             resume={item.resumerequired ? 'Yes' : 'No'}
             students={item.maxstudents}
+            projectId ={item._id}
           />
         ))
       )}

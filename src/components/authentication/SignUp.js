@@ -49,14 +49,14 @@ function SignUp(){
        confirmpassword: "",
        
    })
-   const [name, setName] = useState("");
-   const [roll, setRoll] = useState("");
-   const [email, setEmail] = useState("");
-   const [department, setDepartment] = useState("");
-   const [cpi, setCpi] = useState("");
-   const [resumeLink, setResumeLink] = useState("");
-   const [password, setPassword] = useState("");
-   const [confirmpassword, setConfirmpassword] = useState("");
+//    const [name, setName] = useState("");
+//    const [roll, setRoll] = useState("");
+//    const [email, setEmail] = useState("");
+//    const [department, setDepartment] = useState("");
+//    const [cpi, setCpi] = useState("");
+//    const [resumeLink, setResumeLink] = useState("");
+//    const [password, setPassword] = useState("");
+//    const [confirmpassword, setConfirmpassword] = useState("");
    const [OTP, setOTP] = useState("");
    const [OTPData, setOTPData] = useState(null);
 
@@ -95,14 +95,14 @@ function SignUp(){
         return;
     }
 
-    setName(data.studentName);
-    setRoll(data.roll);
-    setEmail(data.email);
-    setDepartment(data.department);
-    setCpi(data.cpi);
-    setResumeLink(data.resumeLink);
-    setPassword(data.password);
-    setConfirmpassword(data.confirmpassword);
+    // setName(data.name);
+    // setRoll(data.rollno);
+    // setEmail(data.email);
+    // setDepartment(data.department);
+    // setCpi(data.cpi);
+    // setResumeLink(data.resumeLink);
+    // setPassword(data.password);
+    // setConfirmpassword(data.confirmpassword);
     setOTP(data.OTP);
     
     if (!OTPData || !OTPData.otp) {

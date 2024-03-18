@@ -115,7 +115,7 @@
     color: #fff;
     cursor: pointer;
     background-color: #0015ff;
-    height: 20px;
+    /* height: 20px; */
   }
   .project-buttons{
     display: flex;
