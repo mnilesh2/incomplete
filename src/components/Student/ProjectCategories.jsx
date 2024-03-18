@@ -4,14 +4,17 @@ import "./projectcard.css";
 import ProjectDetails from "./projectdetails";
 import "./ProjectDesc.jsx";
 import { Link } from "react-router-dom";
-import Loader from '../Faculty/Loader'
 
 function TotalProjects(props) {
+  console.log(props.rollno);
+  const user = {
+  };
+
   function expand() {
     const projectDiv = document.getElementById(`project-${props.index}`);
     const button = document.getElementById(`expand-button-${props.index}`);
 
-    if (projectDiv.style.height == "370px") {
+    if (projectDiv.style.height === "370px") {
       button.innerText = "Show More";
       projectDiv.style.height = "150px";
     } else {
@@ -19,10 +22,36 @@ function TotalProjects(props) {
       projectDiv.style.height = "370px";
     }
   }
-  const check= props.studentRegistered<props.maxStudents;
+
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+
+
+
+      const url = ` https://cs253backederror404teamnotfoundmohammaadnasarsiddiqui.vercel.app/api/user/${props.logedInStudentData.rollno}/requestproject/${props.index}`;
+      //update the roll no and project id in given route
+
+      const response = await axios.post(url, user);
+      // console.log(response.status);
+
+      if (response.status === 201) {
+        console.log(response);
+      } else {
+        console.error('Failed to create project');
+      }
+    } catch (error) {
+      console.error('Error creating project:', error.message);
+    }
+  };
+
+
 
   return (
-  
+
     <div id={`project-${props.index}`} className="each-project">
       <h2>{props.name}</h2>
       <p>{props.details}</p>
@@ -53,14 +82,7 @@ function TotalProjects(props) {
               {props.Name}
             </span>
           </span>
-          {/* <span style={{ color: "blue", fontWeight: "530" }}>
-            Email:{" "}
-            <span
-              style={{ color: "black", fontWeight: "500", fontSize: "15px" }}
-            >
-              {props.email}
-            </span>
-          </span> */}
+
           <span style={{ color: "blue", fontWeight: "530" }}>
             Open for:{" "}
             <span
@@ -77,7 +99,7 @@ function TotalProjects(props) {
               {props.isResume}
             </span>
           </span>
-      
+
           <span style={{ color: "blue", fontWeight: "500" }}>
             Students Registered:{" "}
             <span
@@ -86,65 +108,38 @@ function TotalProjects(props) {
               {props.students}/{props.total}
             </span>
           </span>
-          {/* <span style={{ color: "blue", fontWeight: "500" }}>
-            Additional Details:{" "}
-            <span
-              style={{ color: "black", fontWeight: "500", fontSize: "15px" }}
-            >
-              {props.additional}
-            </span>
-          </span> */}
+
         </div>
-        {/* <div className="editing">
-          <button>Edit</button>
-          <button>Delete</button>
-         </div> */}
+
       </div>
-      
-      <div className="request-button-css"><Link to="/ProjectDesc"><button>Request</button></Link></div>
-    
+
+      <div className="request-button-css"><button onClick={handleSubmit}>Request</button></div>
+
     </div>
   );
 }
 
 function ProjectCategory(props) {
-  console.log(props.CategoryName);
 
   const [facultyData, setFacultyData] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://mohdnasar.vercel.app/api/user/faculty/projects/?projectCategory=${props.CategoryName}`
+          `https://cs253backederror404teamnotfoundmohammaadnasarsiddiqui.vercel.app/api/user/faculty/projects/?projectCategory=${props.CategoryName}`
         );
-        console.log(response.data);
+        // console.log(response.data);
         setFacultyData(response.data); // Assuming the response contains an array of faculty data
-        setLoading(false); 
       } catch (error) {
         console.error("Error fetching faculty data:", error);
-        setLoading(false); 
       }
     };
 
     fetchData();
   }, []);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "https://mohdnasar.vercel.app/api/user/faculty"
-  //       );
-  //       // console.log(response.data);
-  //       setFacultyData(response.data); // Assuming the response contains an array of faculty data
-  //     } catch (error) {
-  //       console.error("Error fetching faculty data:", error);
-  //     }
-  //   };
+  console.log("faculty data is",facultyData);
 
-  //   fetchData();
-  // }, []);
 
 
   return (
@@ -154,33 +149,41 @@ function ProjectCategory(props) {
           <h2>Ongoing projects:-</h2>
         </div>
         
-        {loading ? ( 
-        <Loader  />
-      ) : (
-            facultyData.map((item, index) => {
-              return (
-                <TotalProjects
-                  key={index}
-                  index ={item._id}
-                  // index={item.name + index} // Note: You might want to use a unique identifier here
-                  name={item.name}
-                  Name={item.name}
-                  email={item.email}
-                  details={item.description}
-                  cpi={item.cpirequired}
-                  category ={item.projectCategory}
-                  batches={item.openfor}
-                  additional={item.Openfor}
-                  preReq={item.openfor}
-                  resume={item.resumerequired}
-                  students={item.studentRegistered}
-                  total={item.maxstudents}
-                  isResume={item.resumerequired}
-                  isRequest={item.isRequest}
-                />
-              );
-            })
-      )}
+
+        {
+          facultyData.map((item, index) => {
+            return (
+              
+              <TotalProjects
+                item={item}
+                std={item.studentsRequested}
+                key={index}
+                index={item._id}
+
+                // index={item.name + index} // Note: You might want to use a unique identifier here
+
+                name={item.name}
+                Name={item.name}
+                email={item.email}
+                details={item.description}
+                cpi={item.cpirequired}
+                CategoryName={props.CategoryName}
+                category={item.projectCategory}
+                batches={item.openfor}
+                additional={item.Openfor}
+                preReq={item.openfor}
+                resume={item.resumerequired}
+                students={item.studentRegistered}
+                total={item.maxstudents}
+                isResume={item.resumerequired}
+                isRequest={item.isRequest}
+                logedInStudentData={props.logedInStudentData}
+                id = {props.ProjectDetails}
+                rollno={props.rollno}
+              />
+            );
+          })
+        }
 
         {/* {facultyData.map((item) => {
   // console.log(item.name);

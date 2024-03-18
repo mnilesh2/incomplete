@@ -27,22 +27,23 @@ import Requests from "./pages/Requests";
 import EnrolledStudents from "./pages/EnrolledStudents";
 import ProfProfile from "./pages/ProfProfile";
 import HomeFaculty from "./pages/HomeFaculty";
+import ForgotPassword from "./components/authentication/ForgotPassword";
 
 function App() {
   // var isWho = "user";
   const [kon, setKon] = useState("user");
   const [isAuthorized, setAuthorization] = useState(false);
   const [CategoryName, setCategoryName] = useState("");
-  const [loginDetail, setLoginDetail] = useState({});
+  const[logedInStudentData, setLogedInStudentData] = useState(null);
+    // const [loginDetail, setLoginDetail] = useState("");
 
-  const getData = (isAuth, who, loginData) => {
+
+  const getData = (isAuth, who, ikartik) => {
     // Handle data from child component
-    // console.log("Data received in parent:", isAuth);
+    console.log("Data received in parent:", ikartik);
     setAuthorization(isAuth);
     setKon(who);
-    setLoginDetail(loginData);
-    
-    console.log(`in app jsx ${loginDetail}`);
+    setLogedInStudentData(ikartik);
   };
 
   const handleLogout = () => {
@@ -70,8 +71,10 @@ function App() {
                 <Route path="Home" element={<HomeFaculty />} />
                 <Route path="EnrolledStudents" element={<EnrolledStudents />} />
                 <Route path="ContactUs" element={<ContactUs />} />
+                <Route path="LogOut" element={<LogOut />} />
+                <Route path="UserProfile" element={<UserProfile logedInStudentData= {logedInStudentData} />} />
                 <Route path="LogOut" element={<LogOut onLogout={handleLogout} />} />
-                <Route path="UserProfile" element={<UserProfile loginDetail= {loginDetail} />} />
+                {/* <Route path="UserProfile" element={<UserProfile loginDetail= {loginDetail} />} /> */}
               </Route>
             </Routes>
           </BrowserRouter>
@@ -96,9 +99,13 @@ function App() {
                 <Route path="Home" element={<Home />} />
                 <Route path="LogOut" element={<LogOut onLogout={handleLogout} />} />
                 <Route path="Student" element={<ProjectCategories getNameOfCategory={getNameOfCategory} />} />
-                <Route path="ProjectPage" element={<ProjectCategory CategoryName={CategoryName} />} />
+                <Route path="ProjectPage" element={
+                <ProjectCategory
+                 CategoryName={CategoryName} 
+                 logedInStudentData ={logedInStudentData}
+                />} />
                 <Route path="ProjectDesc" element={<ProjectDesc />} />
-                <Route path="UserProfile" element={<UserProfile />} />
+                <Route path="UserProfile" element={<UserProfile logedInStudentData= {logedInStudentData} />} />
                 <Route path="History" element={<History />} />
               </Route>
             </Routes>
@@ -119,6 +126,8 @@ function App() {
             <Route index element={<SignIn sendDataToParent={getData} />} />
             <Route path="SignUp" element={<SignUp />} />
             <Route path="SignIn" element={<SignIn sendDataToParent={getData} />} />
+            <Route path="ForgotPassword" element={<ForgotPassword />} />
+
 
           </Routes>
         </BrowserRouter>

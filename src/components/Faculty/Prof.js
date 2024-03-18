@@ -36,7 +36,7 @@ function Prof(props) {
     const [facultyData, setFacultyData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [kartik, setKartik] = useState("Computer Science And Engineering")
-       const url = `https://mohdnasar.vercel.app/api/user/faculty/?department=${props.departmentName}`;
+       const url = `https://cs253backederror404teamnotfoundmohammaadnasarsiddiqui.vercel.app/api/user/faculty/?department=${props.departmentName}`;
     useEffect(() => {
       const fetchData = async () => {
         try {

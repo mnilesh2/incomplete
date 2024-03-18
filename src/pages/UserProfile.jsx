@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import img from '../components/Faculty/users.png';
 import { useNavigate } from 'react-router-dom';
 import './UserProfileCss.css';
 import UserDetails from './userdetails'
 
-function ProfileCard(user) {
+function ProfileCard(props) {
     const navigate = useNavigate();
 
     const handleDetailsClick =() => {
@@ -14,21 +14,21 @@ function ProfileCard(user) {
         <div className="container9">
             <div className="row">
                 <div className="col-md-3">
-                    <img src={user.image} alt="student pic" className="profile-img" />
+                    <img src={props.image} alt="student pic" className="profile-img" />
                 </div>
                 <div className="col-md-9">
                     <div className="profile-info">
                         <div className="profile-info-item">
-                            <h3>Name: {user.name}</h3>
+                            <h3>Name: {props.name}</h3>
                         </div>
                         <div className="profile-info-item">
-                            <h3>Roll No: {user.rollno}</h3>
+                            <h3>Roll No: {props.rollno}</h3>
                         </div>
                         <div className="profile-info-item">
-                            <h3>Email Id: {user.email}</h3>
+                            <h3>Email Id: {props.email}</h3>
                         </div>
                         <div className="profile-info-item">
-                            <h3>Department: {user.branch}</h3>
+                            <h3>Resume Link: {props.resume}</h3>
                         </div>
                         
                         <div className="table-container">
@@ -89,18 +89,40 @@ function ProfileCard1(project) {
 }
 
 function UserProfile(props){
-  const  loginDetails = props.loginDetail
+  const  myData = props.logedInStudentData
+      console.log("data in userProfile: "+myData);
+//   const [oneUserData, setOneUserData] = useState(null);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await fetch(`https://mohdnasar.vercel.app/api/user/faculty/abhas/${myData}`); //"abhas" should be replaced by "unique id" of professor signed in
+//         if (!response.ok) {
+//           throw new Error('Failed to fetch oneUserData data');
+//         }
+//         const data = await response.json();
+//         setOneUserData(data);
+        
+//         console.log(data);
+//       } catch (error) {
+//         console.error('Error fetching oneUserData data:', error);
+//       }
+//     };
+
+//     fetchData();
+//   }, []);
+
     return (
         <div className='flexcard8'>
             
                    <ProfileCard  
-                    name  ={loginDetails.name}
-                    email = {loginDetails.email}
+                    name  ={myData.name}
+                    email = {myData.email}
                     //image = {item.image}
-                    interest = {loginDetails.interest}
-                    branch ={loginDetails.branch}
-                    rollno={loginDetails.rollno}
-                    image={loginDetails.image}
+                    interest = "no"
+                   resume ={myData.resumeLink}
+                    rollno={myData.rollno}
+                    image="sjnv"
                    />
                             
                               {/* {

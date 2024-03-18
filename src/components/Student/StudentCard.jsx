@@ -38,7 +38,7 @@ function ProjectCategories(props){
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://mohdnasar.vercel.app/api/user/faculty/projects/`
+          `https://cs253backederror404teamnotfoundmohammaadnasarsiddiqui.vercel.app/api/user/faculty/projects/`
         );
         // console.log(response.data);
         setFacultyData(response.data); 
